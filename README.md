@@ -16,15 +16,12 @@ Build Tool: Maven
 Architecture: MVC (Model-View-Controller) pattern
 Architecture & Design Patterns
 1. Layered Architecture
-┌─────────────────────┐
-│   Controller Layer   │ ← Handles HTTP requests/responses
-├─────────────────────┤
-│    Service Layer     │ ← Business logic
-├─────────────────────┤
-│  Repository Layer    │ ← Data access
-├─────────────────────┤
-│     Model Layer      │ ← Entity definitions
-└─────────────────────┘
+
+Controller Layer  -Handles HTTP requests/responses
+Service Layer  - Business logic
+Repository Layer - Data access
+Model Layer - Entity definitions
+
 2. Design Patterns Used:
 Repository Pattern: Abstracts data access logic
 Dependency Injection: Spring manages object dependencies
