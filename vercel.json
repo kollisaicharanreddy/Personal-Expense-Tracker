@@ -1,22 +1,11 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "pom.xml",
-      "use": "@vercel/java"
-    }
-  ],
+  "buildCommand": "cp -r src/main/resources/static/* .",
+  "outputDirectory": ".",
+  "installCommand": "echo 'No install needed'",
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/"
-    },
-    {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
-  ],
-  "env": {
-    "SPRING_PROFILES_ACTIVE": "vercel"
-  }
+  ]
 }
