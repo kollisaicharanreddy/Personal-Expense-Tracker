@@ -22,14 +22,17 @@ COPY src ./src
 # Build the application
 RUN ./mvnw clean package -DskipTests
 
+# Verify the JAR file was created and list it for debugging
+RUN ls -la target/ && echo "JAR files found:" && find target/ -name "*.jar" -type f
+
 # Stage 2: Create the runtime image
 FROM eclipse-temurin:17-jre-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy the built JAR from builder stage
-COPY --from=builder /app/target/Personal-Expense-Tracker-0.0.1-SNAPSHOT.jar app.jar
+# Copy the built JAR from builder stage using wildcard to handle any JAR file
+COPY --from=builder /app/target/*.jar app.jar
 
 # Expose port
 EXPOSE 8080
@@ -37,5 +40,5 @@ EXPOSE 8080
 # Set environment variable for Spring profile
 ENV SPRING_PROFILES_ACTIVE=render
 
-# Run the application
-CMD ["java", "-jar", "target/Personal-Expense-Tracker-0.0.1-SNAPSHOT.jar"]
+# Run the application with Spring Boot optimizations
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
