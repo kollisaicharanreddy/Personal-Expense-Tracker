@@ -1,0 +1,29 @@
+# Docker ignore file for Personal Expense Tracker
+
+# Target directory (build output)
+target/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Git
+.git/
+
+# Documentation and deployment files
+*.md
+*.ps1
+*.sh
+render.yaml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp

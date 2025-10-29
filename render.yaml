@@ -1,20 +1,18 @@
-# render.yaml - Render Infrastructure as Code
+# render.yaml - Render Infrastructure as Code (Docker Version)
 services:
   # PostgreSQL Database
   - type: pserv
     name: personal-expense-tracker-db
-    env: postgresql
-    plan: free
     databaseName: personal_expense_tracker
     user: expense_user
+    plan: free
 
-  # Backend Web Service
+  # Backend Web Service (Docker)
   - type: web
     name: personal-expense-tracker-backend
-    env: java
+    env: docker
     plan: free
-    buildCommand: chmod +x render-build.sh && ./render-build.sh
-    startCommand: chmod +x render-start.sh && ./render-start.sh
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: render
@@ -25,7 +23,7 @@ services:
       - key: CORS_ORIGINS
         value: "*"
 
-  # Frontend Static Site
+  # Frontend Static Site  
   - type: web
     name: personal-expense-tracker-frontend
     env: static
